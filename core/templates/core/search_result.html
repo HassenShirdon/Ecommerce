@@ -1,0 +1,35 @@
+<!-- search_results.html -->
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container mt-5 pt-5">
+    <div class="container">
+        {% if results %}
+        <h2 class="mb-4">Search Results</h2>
+        <div class="row">
+            {% for item in results %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="card product-item">
+                    <img class="card-img-top product-img" src="{{ item.image.url }}" alt="{{ item.name }}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title product-name">{{ item.name }}</h5>
+                        <h6 class="card-subtitle product-price">${{ item.price }}</h6>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="{% url 'itemDetailView' item.id %}" class="btn btn-sm btn-primary btn-view-detail">
+                            <i class="fas fa-eye"></i> View Detail
+                        </a>
+                        <a href="#" class="btn btn-sm btn-danger btn-add-to-cart">
+                            <i class="fas fa-shopping-cart"></i> Add To Cart
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-center">No results found.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock main%}

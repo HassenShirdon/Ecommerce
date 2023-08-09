@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Style-Shop</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="{%static 'img/favicon.ico'%}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{%static 'lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{%static 'css/style.css'%}" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top" style="height: 60px; margin-bottom: 50px;">
+        <div class="container">
+            <a class="navbar-brand" href="{%url 'home'%}"
+                style="font-size: 48px; font-family: 'Great Vibes', cursive;">StyleShop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{%url 'home'%}"
+                            style="color: #FFFFFF;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'shop'%}" style="color: #FFFFFF;">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'about'%}" style="color: #FFFFFF;">About-Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'contact'%}" style="color: #FFFFFF;">Contact-us</a>
+                    </li>
+                </ul>
+
+
+                <!-- Cart and Login Icons -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: #FFFFFF;">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                    </li>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <p class="m-2 text-white text-capitalize">Hi, {{ user.username}}</p>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'logout' %}" class="nav-link text-white">Logout</a>
+
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}" style="color: #FFFFFF;">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'register'%}" style="color: #FFFFFF;">Join Now</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    {% block main%}
+    {% endblock main%}
+    <!-- Footer Start -->
+    <footer class=" bg-dark text-white mt-2 pt-2">
+        <div class="container">
+            <div class="row justify-content-center align-items-center px-xl-5 pt-5">
+                <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+                    <a href="#" class="text-decoration-none">
+                        <h1 class="mb-4 display-5 text-primary font-weight-bold px-3 mr-1">StyleShop
+                        </h1>
+                    </a>
+                    <p class="mb-4">Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no
+                        sit erat lorem
+                        et magna
+                        ipsum dolore amet erat.</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street,
+                        New York, USA</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
+                    <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-2">
+                    <h5 class="font-weight-bold text-white mb-4">Quick Links</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-primary mb-2" href="{% url 'home'%}"><i
+                                class="fa fa-angle-right mr-2"></i>Home</a>
+                        <a class="text-primary mb-2" href="{%url 'checkout'%}"><i class="fa fa-angle-right mr-2"></i>Our
+                            Shop</a>
+                        <a class="text-primary mb-2" href="{%url 'contact'%}"><i
+                                class="fa fa-angle-right mr-2"></i>Contact
+                            Us</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-2">
+                    <h5 class="font-weight-bold text-light mb-4">Newsletter</h5>
+                    <form action="">
+                        <div class="form-group">
+                            <input type="text" class="form-control border-0 py-4" placeholder="Your Name"
+                                required="required" />
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control border-0 py-4 my-2" placeholder="Your Email"
+                                required="required" />
+                        </div>
+                        <div>
+                            <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row mx-xl-3 py-4 bg-light w-auto">
+                <div class="col-md-6 px-xl-0">
+                    <p class="mb-md-0 text-center text-md-left text-dark">
+                        &copy; <a class="text-primary font-weight-semi-bold" href="#">StyleShop</a>. All
+                        Rights
+                        Reserved.
+                        Designed by <a class="text-primary font-weight-semi-bold" href="https://htmlcodex.com">Hassen
+                            Tahir</a>
+                    </p>
+                </div>
+                <div class="col-md-6 px-xl-0 text-center text-md-right">
+                    <img class="img-fluid" src="../../static/img/payments.png" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Footer End -->
+
+
+    <!-- Template Javascript -->
+    <script src="{%static 'js/main.js'%}"></script>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{%static 'lib/easing/easing.min.js'%}"></script>
+    <script src="{%static 'lib/owlcarousel/owl.carousel.min.js'%}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{%static 'mail/jqBootstrapValidation.min.js'%}"></script>
+    <script src="{%static 'mail/contact.js'%}"></script>
+
+
+</body>
+
+</html>

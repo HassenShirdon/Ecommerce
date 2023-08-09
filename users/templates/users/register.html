@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container center m-5 pt-5">
+    <div class="row justify-content-center ">
+        <div class=" col-lg-4 col-md-6 shadow p-3 m-5 bg-white rounded"> {# Adjust the column width as needed #}
+            <form method="post" novalidate class="card m-4">
+                {% csrf_token %}
+                <h2 class="text-center text-primary">Create your account</h2>
+                {% for field in form %}
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                <small class="error">{{ field.errors|striptags }}</small>
+                {% endif %}
+                {% endfor %}
+
+                <input type="submit" value="Register" class="btn btn-primary full-width m-2">
+                <hr>
+                <p class="text-center">Already have an account? <a href="{% url 'login' %}">Login Here</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock main %}

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5 m-4">
+        <!-- Shop Sidebar Start -->
+
+        <div class="col-lg-3 d-none d-lg-block">
+            <div class="sidebar-wrapper">
+                <div class="dropdown-wrapper">
+                    <button
+                        class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100 rounded-4 mt-5"
+                        data-toggle="collapse" data-target="#navbar-vertical" aria-expanded="true">
+                        <h6 class="m-1">Categories</h6>
+                        <i class="fas fa-angle-down text-dark"></i>
+                    </button>
+                    <nav class="collapse navbar-vertical" id="navbar-vertical">
+                        <ul class="navbar-nav w-100 overflow-hidden text-center">
+                            {% for category in categories %}
+                            <li class="nav-item">
+                                <a href="{% url 'category_list' category.slug %}" class="nav-link">{{category.name}}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Shop Sidebar End -->
+
+        <!-- Shop Product Start -->
+        <div class="col-lg-9 col-md-12">
+
+            <div class="dropdown ml-3 text-center mb-5">
+                <button class="btn border dropdown-toggle full-width" type="button" id="triggerId"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sort by
+                </button>
+                <div class="dropdown-menu dropdown-menu-right text-center p-0" aria-labelledby="triggerId">
+                    <a class="dropdown-item" href="#">Latest</a>
+                    <a class="dropdown-item" href="#">Popularity</a>
+                    <a class="dropdown-item" href="#">Best Rating</a>
+                </div>
+            </div>
+
+
+            <div class="row product-wrapper">
+                {% for item in items %}
+                <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                    <div class="card product-item">
+                        <div class="product-img-wrapper">
+                            <img class="img-fluid product-img" src="{{ item.image.url }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="card-body text-center">
+                            <h6 class="product-name">{{ item.name }}</h6>
+                            <h6 class="product-price">${{ item.price }}</h6>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between bg-light border m-2">
+                            <a href="{% url 'itemDetailView' item.id %}" class="btn btn-sm text-dark btn-view-detail">
+                                <i class="fas fa-eye"></i> View Detail
+                            </a>
+                            <a href="#" class="btn btn-sm text-danger btn-add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Add To Cart
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+        <!-- Shop Product End -->
+    </div>
+</div>
+{% endblock main%}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<section class="about-us-section py-5">
+    <div class="container mt-5">
+        <div class="row">
+            <h2 class="text-primary text-center">About Our Men's Fashion Store</h2>
+            <div class="col-md-6">
+                <div class="about-image">
+                    <img src="{% static 'img/Store.png'%}" alt="About Us Image">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="about-content">
+
+                    <p class="text-dark ">Welcome to StyleShop, your go-to destination for the latest men's fashion
+                        trends and styles. At
+                        StyleShop, we are dedicated to providing high-quality, trendy clothing and accessories
+                        exclusively for men.
+                        Our carefully curated collection features a wide range of men's apparel, including shirts,
+                        pants,
+                        shoes, accessories, and more. We believe that every man deserves to look and feel confident in
+                        what he wears, and our mission is to help you elevate your style effortlessly.</p>
+                    <p>Whether you're dressing up for a special occasion or looking for casual everyday wear, StyleShop
+                        has something for every man's unique taste and preference. Our team of fashion experts is
+                        passionate about menswear and is always on the lookout for the latest fashion trends to keep our
+                        collection fresh and exciting.Thank you for choosing StyleShop for your fashion needs. We take
+                        pride in providing exceptional
+                        customer service and a seamless shopping experience. If you have any questions or need
+                        assistance, feel free to contact our friendly customer support team.</p>
+                    <p>Stay stylish, stay confident, and shop with StyleShop!</p>
+                </div>
+            </div>
+        </div>
+        <!-- Our Team Section -->
+        <div class="row my-5">
+            <div class="col-md-12">
+                <h2 class="text-center text-primary">Our Team</h2>
+            </div>
+            <div class="col-md-4">
+                <div class="team-member">
+                    <img src="{% static 'img/Hassen.jpg'%}" alt="Team Member 1">
+                    <h4>Hassen Tahir</h4>
+                    <p>CEO & Founder</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="team-member">
+                    <img src="{% static 'img/mahad2.jpg'%}" alt="Team Member 2">
+                    <h4>Jane Smith</h4>
+                    <p>Head of Design</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="team-member">
+                    <img src="{% static 'img/mohamed.jpg'%}" alt="Team Member 3">
+                    <h4>Mike Johnson</h4>
+                    <p>Marketing Manager</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock main%}
