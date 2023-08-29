@@ -1,6 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category, Item,  Cart, CartItem, Order, OrderItem
 from django.views import generic
+
 
 # View for listing all categories
 
@@ -39,6 +42,26 @@ class itemDetailView(generic.DetailView):
 # View for displaying user profile
 
 
+@login_required
+def cart(request):
+    if request.user.is_authenticated:
+        user_cart, created = Cart.objects.get_or_create(user=request.user)
+        cart_items = user_cart.cart_items.all()
+        total_price = sum(item.item.price *
+                          item.quantity for item in cart_items)
+
+        context = {
+            'cart_items': cart_items,
+            'total_price': total_price,
+            'empty_cart': not bool(cart_items),  # Check if cart is empty
+        }
+
+        return render(request, 'core/cart.html', context)
+    else:
+        # Handle case when user is not authenticated (optional)
+        return render(request, 'core/cart.html', {'empty_cart': True})
+
+
 def cart_detail(request, cart_id):
     cart = get_object_or_404(Cart, id=cart_id)
     return render(request, 'core/cart_detail.html', {'cart': cart})
@@ -60,10 +83,6 @@ def order_detail(request, order_id):
 
 def contact(request):
     return render(request, 'core/contact.html')
-
-
-def checkout(request):
-    return render(request, 'core/cart.html')
 
 
 def t_shirts_view(request):
@@ -89,5 +108,26 @@ def search_results(request):
         results = Item.objects.filter(name__icontains=results)
     else:
         results = []
-
     return render(request, 'core/search_result.html', {'results': results})
+
+
+def add_to_cart(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    user_cart, created = Cart.objects.get_or_create(user=request.user)
+
+    cart_item, created = CartItem.objects.get_or_create(
+        cart=user_cart, item=item)
+    if not created:
+        cart_item.quantity += 1
+        cart_item.save()
+
+    return JsonResponse({'success': True})
+# View for the cart
+
+
+def checkout(request):
+    user_cart, created = Cart.objects.get_or_create(user=request.user)
+    cart_items = CartItem.objects.filter(cart=user_cart)
+    total_price = sum(item.item.price * item.quantity for item in cart_items)
+
+    return render(request, 'core/checkout.html', {'cart_items': cart_items, 'total_price': total_price})

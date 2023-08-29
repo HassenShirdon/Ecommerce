@@ -29,3 +29,29 @@ function change_image(image) {
 }
 
 document.addEventListener("DOMContentLoaded", function (event) {});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const addToCartButtons = document.querySelectorAll(".btn-add-to-cart");
+
+  addToCartButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const itemId = this.getAttribute("data-item-id");
+      addToCart(itemId);
+    });
+  });
+
+  function addToCart(itemId) {
+    fetch(`/add-to-cart/${itemId}/`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          alert("Item added to cart successfully!");
+        } else {
+          alert("Failed to add item to cart.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+});
