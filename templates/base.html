@@ -60,12 +60,6 @@
 
                 <!-- Cart and Login Icons -->
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'cart' %}" style="color: #FFFFFF;">
-                            <i class="fas fa-shopping-cart cart-icon"></i> 
-                        </a>
-                    </li>
-                    </li>
                     {% if request.user.is_authenticated %}
                     <li class="nav-item">
                         <p class="m-2 text-white text-capitalize">Hi, {{ user.username}}</p>
@@ -99,14 +93,12 @@
                         <h1 class="mb-4 display-5 text-primary font-weight-bold px-3 mr-1">StyleShop
                         </h1>
                     </a>
-                    <p class="mb-4">Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no
-                        sit erat lorem
-                        et magna
-                        ipsum dolore amet erat.</p>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street,
-                        New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
-                    <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+                    <p class="mb-4">we are dedicated to providing high-quality, trendy clothing and accessories
+                        exclusively for men.</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Barnauer Str 4,
+                        Tirschenreuth, Germany</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@styleshop.com</p>
+                    <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+4917123456789</p>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-2">
                     <h5 class="font-weight-bold text-white mb-4">Quick Links</h5>
@@ -144,7 +136,7 @@
                         &copy; <a class="text-primary font-weight-semi-bold" href="#">StyleShop</a>. All
                         Rights
                         Reserved.
-                        Designed by <a class="text-primary font-weight-semi-bold" href="https://htmlcodex.com">Hassen
+                        Designed by <a class="text-primary font-weight-semi-bold" href="hassentahir.vercel.app">Hassen
                             Tahir</a>
                     </p>
                 </div>
