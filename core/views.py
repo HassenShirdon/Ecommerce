@@ -115,10 +115,17 @@ def add_to_cart(request, item_id):
     item = get_object_or_404(Item, id=item_id)
     user_cart, created = Cart.objects.get_or_create(user=request.user)
 
+    # Try to get an existing cart item for the given item
     cart_item, created = CartItem.objects.get_or_create(
         cart=user_cart, item=item)
+
     if not created:
+        # If the cart item already exists, increase its quantity by 1
         cart_item.quantity += 1
+        cart_item.save()
+    else:
+        # If it's a new cart item, set the quantity to 1
+        cart_item.quantity = 1
         cart_item.save()
 
     return JsonResponse({'success': True})
